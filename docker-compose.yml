@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  usuarios_service:
+    build:
+      context: .
+      dockerfile: dockerfile_usuarios
+    container_name: usuarios_service
+    networks:
+      - soa_network
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  fondas_service:
+    build:
+      context: .
+      dockerfile: dockerfile_fondas
+    container_name: fondas_service
+    networks:
+      - soa_network
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  reservas_service:
+    build:
+      context: .
+      dockerfile: dockerfile_reservas
+    container_name: reservas_service
+    networks:
+      - soa_network
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  opiniones_service:
+    build:
+      context: .
+      dockerfile: dockerfile_opiniones
+    container_name: opiniones_service
+    networks:
+      - soa_network
+    ports:
+      - "8004:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  productos_service:
+    build:
+      context: .
+      dockerfile: dockerfile_productos
+    container_name: productos_service
+    networks:
+      - soa_network
+    ports:
+      - "8005:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  pagos_service:
+    build:
+      context: .
+      dockerfile: dockerfile_pagos
+    container_name: pagos_service
+    networks:
+      - soa_network
+    ports:
+      - "8006:8000"
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+  alertas_service:
+    build:
+      context: .
+      dockerfile: dockerfile_alertas
+    container_name: alertas_service
+    networks:
+      - soa_network
+    ports:
+      - "8007:8000"
+    volumes:
+      - ./soa.db:/app/soa.db
+    environment:
+      SECRET_KEY: "tu_clave_secreta_segura"
+
+networks:
+  soa_network:
+    driver: bridge
